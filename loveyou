@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Я люблю тебя</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: black;
+      font-family: sans-serif;
+      position: relative;
+      height: 100vh;
+      cursor: pointer;
+    }
+    .love {
+      position: absolute;
+      color: red;
+      font-size: 20px;
+      animation: fall linear forwards;
+    }
+    @keyframes fall {
+      0% {
+        top: -50px;
+        opacity: 1;
+      }
+      100% {
+        top: 100vh;
+        opacity: 0;
+      }
+    }
+    .click-love {
+      position: absolute;
+      color: white;
+      font-size: 30px;
+      animation: fadeout 2s forwards;
+    }
+    @keyframes fadeout {
+      0% { opacity: 1; }
+      100% { opacity: 0; transform: scale(1.5); }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    function createFallingLove() {
+      const love = document.createElement('div');
+      love.className = 'love';
+      love.textContent = 'я люблю тебя';
+      love.style.left = Math.random() * window.innerWidth + 'px';
+      love.style.animationDuration = (2 + Math.random() * 3) + 's';
+      document.body.appendChild(love);
+      setTimeout(() => love.remove(), 5000);
+    }setInterval(createFallingLove, 100);
+
+document.body.addEventListener('click', (e) => {
+  const clickLove = document.createElement('div');
+  clickLove.className = 'click-love';
+  clickLove.textContent = 'я люблю тебя';
+  clickLove.style.left = e.clientX + 'px';
+  clickLove.style.top = e.clientY + 'px';
+  document.body.appendChild(clickLove);
+  setTimeout(() => clickLove.remove(), 2000);
+
+  for (let i = 0; i < 5; i++) {
+    createFallingLove();
+  }
+});
+
+  </script>
+</body>
+</html>
